@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neural Manifold Explorer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f8f9fa;
+      color: #212529;
+      padding: 2rem 1rem 4rem;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    header { margin-bottom: 2.5rem; }
+    header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+    header p { color: #555; max-width: 680px; line-height: 1.55; font-size: 0.97rem; }
+    header p a { color: #0070c0; text-decoration: none; }
+    header p a:hover { text-decoration: underline; }
+    h2 { font-size: 1.15rem; font-weight: 600; margin: 2rem 0 0.8rem; color: #333; border-bottom: 2px solid #dee2e6; padding-bottom: 0.35rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+    .card {
+      background: #fff;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      padding: 1rem 1.2rem 1.1rem;
+      transition: box-shadow 0.15s, border-color 0.15s;
+    }
+    .card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.09); border-color: #0070c0; }
+    .card a { text-decoration: none; color: inherit; display: block; }
+    .card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; color: #0070c0; }
+    .card p { font-size: 0.85rem; color: #666; line-height: 1.45; }
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      margin-bottom: 0.45rem;
+    }
+    .badge-bio     { background: #d4edda; color: #155724; }
+    .badge-fly     { background: #cce5ff; color: #004085; }
+    .badge-fnn     { background: #fff3cd; color: #856404; }
+    .badge-cornet  { background: #fce4ec; color: #880e4f; }
+    .badge-mousenet{ background: #f3e5f5; color: #4a148c; }
+    .badge-allen   { background: #e8f4f8; color: #0c4a6e; }
+    .badge-r2plus1d{ background: #e0f2f1; color: #004d40; }
+    footer { margin-top: 3rem; font-size: 0.8rem; color: #888; }
+    footer a { color: #888; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Neural Manifold Explorer</h1>
+    <p style="margin-bottom:0.75rem;">
+      Interactive encoding and decoding manifold explorer for NeurIPS submission. 
+    </p>
+    <p>
+      Each link below opens a fully self-contained, interactive 3-D manifold viewer
+      (no installation required). The viewer shows the <strong>encoding manifold</strong>
+      (neurons in response space), the <strong>decoding manifold</strong> (stimuli in
+      population-activity space), and temporal <strong>decoding trajectories</strong>.
+      You can select subpopulations by region, radius, or functional metric, animate
+      neural activity over the trial, and compare the representational geometry of any
+      chosen subset to the full population.
+    </p>
+    <p style="margin-top:0.75rem; background:#f0f4f8; border-left:3px solid #0070c0; padding:0.6rem 0.8rem; border-radius:4px; font-size:0.88rem;">
+      <strong>How to use:</strong> Use the <em>Bounding Box</em>, <em>Radius</em>, or <em>Metric</em>
+      tabs to define a neuron subpopulation. Click <em>Update Decoding</em> to recompute the decoding
+      manifold and trajectories for that subset — 10 quantitative metrics then appear below the plots.
+      Use <em>Dec. color</em> to switch decoding plots between stimulus and orientation coloring.
+      Select <em>▶ Activity (animate)</em> in the Color-by dropdown to animate neural responses frame-by-frame.
+    </p>
+  </header>
+
+  <h2>Biological Neural Data</h2>
+  <div class="grid">
+    <div class="card">
+      <a href="Retina.html">
+        <span class="badge badge-bio">Biology</span>
+        <h3>Retina</h3>
+        <p>Mouse retinal ganglion cells (n ≈ 1 146) responding to drifting gratings (<a href="https://www.pnas.org/doi/10.1073/pnas.2317773121" target="_blank"> Dyballa et al., 2024</a>).</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="V1.html">
+        <span class="badge badge-bio">Biology</span>
+        <h3>Mouse V1</h3>
+        <p>Primary visual cortex neurons (n ≈ 637) (<a href="https://www.pnas.org/doi/10.1073/pnas.2317773121" target="_blank"> Dyballa et al., 2024</a>).</p>
+      </a>
+    </div>
+  </div>
+
+  <h2>Allen Brain Observatory — Mouse Visual Cortex</h2>
+  <div class="grid">
+    <div class="card">
+      <a href="allen_VISp.html">
+        <span class="badge badge-allen">Allen · Gratings</span>
+        <h3>VISp — Primary Visual Cortex</h3>
+        <p>V1 responses (n ≈ 1 962) to drifting gratings (Allen Brain Observatory).</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="allen_VISam.html">
+        <span class="badge badge-allen">Allen · Gratings</span>
+        <h3>VISam — Anteromedial Area</h3>
+        <p>Higher visual area VISam (n ≈ 1 488) responding to drifting gratings.</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="allen_VISl.html">
+        <span class="badge badge-allen">Allen · Gratings</span>
+        <h3>VISl — Lateral Area</h3>
+        <p>Higher visual area VISl (n ≈ 922) responding to drifting gratings.</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="allen_VISpm.html">
+        <span class="badge badge-allen">Allen · Gratings</span>
+        <h3>VISpm — Posteromedial Area</h3>
+        <p>Higher visual area VISpm (n ≈ 867) responding to drifting gratings.</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="allen_VISrl.html">
+        <span class="badge badge-allen">Allen · Gratings</span>
+        <h3>VISrl — Rostrolateral Area</h3>
+        <p>Higher visual area VISrl (n ≈ 1 409) responding to drifting gratings.</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="allen_VISal.html">
+        <span class="badge badge-allen">Allen · Gratings</span>
+        <h3>VISal — Anterolateral Area</h3>
+        <p>Higher visual area VISal (n ≈ 1 516) responding to drifting gratings.</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="VISp_natural_movie_one_scenes_all156.html">
+        <span class="badge badge-allen">Allen · Natural Movie</span>
+        <h3>VISp — Natural Movie (all 14 scenes)</h3>
+        <p>Primary visual cortex (n ≈ 2 015) to all 14 scenes (NaN-padded to 156 frames). Includes external DC colorings.</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="VISam_natural_movie_one_scenes_all156.html">
+        <span class="badge badge-allen">Allen · Natural Movie</span>
+        <h3>VISam — Natural Movie (all 14 scenes)</h3>
+        <p>Higher visual area VISam (n ≈ 1 506) responding to natural movie scenes.</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="VISl_natural_movie_one_scenes_all156.html">
+        <span class="badge badge-allen">Allen · Natural Movie</span>
+        <h3>VISl — Natural Movie (all 14 scenes)</h3>
+        <p>Higher visual area VISl (n ≈ 933) responding to natural movie scenes.</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="VISpm_natural_movie_one_scenes_all156.html">
+        <span class="badge badge-allen">Allen · Natural Movie</span>
+        <h3>VISpm — Natural Movie (all 14 scenes)</h3>
+        <p>Higher visual area VISpm (n ≈ 879) responding to natural movie scenes.</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="VISrl_natural_movie_one_scenes_all156.html">
+        <span class="badge badge-allen">Allen · Natural Movie</span>
+        <h3>VISrl — Natural Movie (all 14 scenes)</h3>
+        <p>Higher visual area VISrl (n ≈ 1 415) responding to natural movie scenes.</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="VISal_natural_movie_one_scenes_all156.html">
+        <span class="badge badge-allen">Allen · Natural Movie</span>
+        <h3>VISal — Natural Movie (all 14 scenes)</h3>
+        <p>Higher visual area VISal (n ≈ 1 553) responding to natural movie scenes.</p>
+      </a>
+    </div>
+  </div>
+
+  <h2>Fly Visual System (FlyVis Model, <a href="https://www.nature.com/articles/s41586-024-07939-3" target="_blank">
+        Lappalainen et al., 2024
+      </a>)</h2>
+  <div class="grid">
+    <div class="card">
+      <a href="flyvis_Retina_i3_n400_model000.html">
+        <span class="badge badge-fly">FlyVis</span>
+        <h3>Fly Retina</h3>
+        <p>Photoreceptor layer (n ≈ 400).</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="flyvis_Lamina_i3_n350_model000.html">
+        <span class="badge badge-fly">FlyVis</span>
+        <h3>Fly Lamina</h3>
+        <p>First optic neuropil (n ≈ 350).</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="flyvis_Medulla_i3_n550_model000.html">
+        <span class="badge badge-fly">FlyVis</span>
+        <h3>Fly Medulla</h3>
+        <p>Second optic neuropil (n ≈ 550).</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="flyvis_T_Tm_i3_n1700_model000.html">
+        <span class="badge badge-fly">FlyVis</span>
+        <h3>Fly T/Tm Cells</h3>
+        <p>T and Tm cell types in the medulla/lobula (n ≈ 1 700).</p>
+      </a>
+    </div>
+  </div>
+
+  <h2>CORnet-S (Primate Visual Cortex CNN, <a href="https://arxiv.org/abs/1909.06161" target="_blank">Schrimpf et al., 2020</a>)</h2>
+  <div class="grid">
+    <div class="card">
+      <a href="cornet_s_V1_i3_n2000_seed17.html">
+        <span class="badge badge-cornet">CORnet-S</span>
+        <h3>CORnet-S — V1</h3>
+        <p>Recurrent convolutional area V1 (n ≈ 2 000). Pretrained on ImageNet; spatial recurrence within each frame (times=1).</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="cornet_s_V2_i3_n2000_seed17.html">
+        <span class="badge badge-cornet">CORnet-S</span>
+        <h3>CORnet-S — V2</h3>
+        <p>Recurrent convolutional area V2 (n ≈ 2 000). 2 recurrent iterations per frame.</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="cornet_s_V4_i3_n2000_seed17.html">
+        <span class="badge badge-cornet">CORnet-S</span>
+        <h3>CORnet-S — V4</h3>
+        <p>Recurrent convolutional area V4 (n ≈ 2 000). 4 recurrent iterations per frame.</p>
+      </a>
+    </div>
+  </div>
+
+  <h2>MouseNet (Mouse Visual Cortex CNN, <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010427" target="_blank">Wang et al., 2022</a>)</h2>
+  <div class="grid">
+    <div class="card">
+      <a href="mousenet_LGNv_i3_n200_seed17.html">
+        <span class="badge badge-mousenet">MouseNet</span>
+        <h3>MouseNet — LGNv</h3>
+        <p>Ventral lateral geniculate nucleus (n ≈ 200). Pretrained on ImageNet at 64×64.</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="mousenet_VISp2_3_i3_n1000_seed17.html">
+        <span class="badge badge-mousenet">MouseNet</span>
+        <h3>MouseNet — VISp 2/3</h3>
+        <p>Primary visual cortex, layer 2/3 (n ≈ 1 000).</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="mousenet_VISp4_i3_n1000_seed17.html">
+        <span class="badge badge-mousenet">MouseNet</span>
+        <h3>MouseNet — VISp 4</h3>
+        <p>Primary visual cortex, layer 4 (n ≈ 1 000).</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="mousenet_VISal2_3_i3_n600_seed17.html">
+        <span class="badge badge-mousenet">MouseNet</span>
+        <h3>MouseNet — VISal 2/3</h3>
+        <p>Anterolateral visual area, layer 2/3 (n ≈ 600).</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="mousenet_VISli2_3_i3_n360_seed17.html">
+        <span class="badge badge-mousenet">MouseNet</span>
+        <h3>MouseNet — VISli 2/3</h3>
+        <p>Laterointermediate visual area, layer 2/3 (n ≈ 360).</p>
+      </a>
+    </div>
+  </div>
+
+  <h2>R(2+1)D (Spatiotemporal Video CNN, <a href="https://openaccess.thecvf.com/content_cvpr_2018/html/Tran_A_Closer_Look_CVPR_2018_paper.html" target="_blank">Tran et al., 2018</a>)</h2>
+  <div class="grid">
+    <div class="card">
+      <a href="r2plus1d_layer1_i3_n2000_seed17.html">
+        <span class="badge badge-r2plus1d">R(2+1)D</span>
+        <h3>R(2+1)D — Layer 1</h3>
+        <p>First convolutional block (n ≈ 2 000). Pretrained on Kinetics-400; factored spatiotemporal convolutions.</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="r2plus1d_layer2_i3_n2000_seed17.html">
+        <span class="badge badge-r2plus1d">R(2+1)D</span>
+        <h3>R(2+1)D — Layer 2</h3>
+        <p>Second convolutional block (n ≈ 2 000).</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="r2plus1d_layer3_i3_n2000_seed17.html">
+        <span class="badge badge-r2plus1d">R(2+1)D</span>
+        <h3>R(2+1)D — Layer 3</h3>
+        <p>Third convolutional block (n ≈ 2 000).</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="r2plus1d_layer4_i3_n1960_seed17.html">
+        <span class="badge badge-r2plus1d">R(2+1)D</span>
+        <h3>R(2+1)D — Layer 4</h3>
+        <p>Fourth (deepest) convolutional block (n ≈ 1 960).</p>
+      </a>
+    </div>
+  </div>
+
+  <h2>Foundation Neural Network of Mouse Visual Cortex (FNN, <a href="https://www.nature.com/articles/s41586-025-08829-y" target="_blank">
+        Wang et al., 2025
+      </a>)</h2>
+  <div class="grid">
+    <div class="card">
+      <a href="fnn07_act_i3_n2000_SCL0_7_TL37_inputs0_maxFr_maxNr_seed1.html">
+        <span class="badge badge-fnn">FNN</span>
+        <h3>FNN — Inputs Layer 0</h3>
+        <p>FNN intermediate activations, inputs.0 (n ≈ 2 000).</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="fnn07_act_i3_n2000_SCL0_7_TL37_blocks2_maxFr_maxNr_seed1.html">
+        <span class="badge badge-fnn">FNN</span>
+        <h3>FNN — Blocks Layer 2</h3>
+        <p>FNN intermediate activations, blocks.2 (n ≈ 2 000).</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="fnn07_act_i3_n2000_SCL0_7_TL37_hidden_maxFr_maxNr_seed1.html">
+        <span class="badge badge-fnn">FNN</span>
+        <h3>FNN — Hidden Layer</h3>
+        <p>FNN intermediate activations, hidden layer (n ≈ 2 000).</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="fnn07_seed2.html">
+        <span class="badge badge-fnn">FNN</span>
+        <h3>FNN Output</h3>
+        <p>FNN activations (n ≈ 1 000).</p>
+      </a>
+    </div>
+  </div>
+
+  <h2>ViT-B/16 (Vision Transformer)</h2>
+  <div class="grid">
+    <div class="card">
+      <a href="vit_b_16_L11_n2000_frames.html">
+        <span class="badge badge-vit">ViT-B/16</span>
+        <h3>ViT-B/16 — Layer 11</h3>
+        <p>Vision Transformer (ViT-B/16) layer 11 activations (n ≈ 2 000), responding to optical-flow stimuli.</p>
+      </a>
+    </div>
+  </div>
+
+  <h2>Raptor (Recurrent Vision Transformer)</h2>
+  <div class="grid">
+    <div class="card">
+      <a href="raptor3_n2000.html">
+        <span class="badge badge-raptor">Raptor</span>
+        <h3>Raptor — 2 000 units</h3>
+        <p>Raptor activations (n ≈ 2 000), responding to ImageNet stimuli. Time corresponds to consecutive layers here.</p>
+      </a>
+    </div>
+  </div>
+
+
+</div>
+</body>
+</html>
