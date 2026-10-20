@@ -55,7 +55,7 @@
   <header>
     <h1>Neural Manifold Explorer</h1>
     <p style="margin-bottom:0.75rem;">
-      Interactive encoding and decoding manifold explorer for NeurIPS submission. 
+      Interactive encoding and decoding manifold explorer.
     </p>
     <p>
       Each link below opens a fully self-contained, interactive 3-D manifold viewer
@@ -75,20 +75,36 @@
     </p>
   </header>
 
-  <h2>Biological Neural Data</h2>
+  <h2>Foundation Neural Network of Mouse Visual Cortex (FNN, <a href="https://www.nature.com/articles/s41586-025-08829-y" target="_blank">
+        Wang et al., 2025
+      </a>)</h2>
   <div class="grid">
     <div class="card">
-      <a href="Retina.html">
-        <span class="badge badge-bio">Biology</span>
-        <h3>Retina</h3>
-        <p>Mouse retinal ganglion cells (n ≈ 1 146) responding to drifting gratings (<a href="https://www.pnas.org/doi/10.1073/pnas.2317773121" target="_blank"> Dyballa et al., 2024</a>).</p>
+      <a href="fnn07_act_i3_n2000_SCL0_7_TL37_inputs0_maxFr_maxNr_seed1.html">
+        <span class="badge badge-fnn">FNN</span>
+        <h3>FNN — Inputs Layer 0</h3>
+        <p>FNN intermediate activations, inputs.0 (n ≈ 2 000).</p>
       </a>
     </div>
     <div class="card">
-      <a href="V1.html">
-        <span class="badge badge-bio">Biology</span>
-        <h3>Mouse V1</h3>
-        <p>Primary visual cortex neurons (n ≈ 637) (<a href="https://www.pnas.org/doi/10.1073/pnas.2317773121" target="_blank"> Dyballa et al., 2024</a>).</p>
+      <a href="fnn07_act_i3_n2000_SCL0_7_TL37_blocks2_maxFr_maxNr_seed1.html">
+        <span class="badge badge-fnn">FNN</span>
+        <h3>FNN — Blocks Layer 2</h3>
+        <p>FNN intermediate activations, blocks.2 (n ≈ 2 000).</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="fnn07_act_i3_n2000_SCL0_7_TL37_hidden_maxFr_maxNr_seed1.html">
+        <span class="badge badge-fnn">FNN</span>
+        <h3>FNN — Hidden Layer</h3>
+        <p>FNN intermediate activations, hidden layer (n ≈ 2 000).</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="fnn07_seed2.html">
+        <span class="badge badge-fnn">FNN</span>
+        <h3>FNN Output</h3>
+        <p>FNN activations (n ≈ 1 000).</p>
       </a>
     </div>
   </div>
@@ -177,6 +193,26 @@
         <span class="badge badge-allen">Allen · Natural Movie</span>
         <h3>VISal — Natural Movie (all 14 scenes)</h3>
         <p>Higher visual area VISal (n ≈ 1 553) responding to natural movie scenes.</p>
+      </a>
+    </div>
+  </div>
+
+  <h2>Mouse Retina &amp; V1 (<a href="https://www.pnas.org/doi/10.1073/pnas.2317773121" target="_blank">
+        Dyballa et al., 2024
+      </a>)</h2>
+  <div class="grid">
+    <div class="card">
+      <a href="Retina.html">
+        <span class="badge badge-bio">Biology</span>
+        <h3>Retina</h3>
+        <p>Mouse retinal ganglion cells (n ≈ 1 146) responding to drifting gratings.</p>
+      </a>
+    </div>
+    <div class="card">
+      <a href="V1.html">
+        <span class="badge badge-bio">Biology</span>
+        <h3>Mouse V1</h3>
+        <p>Primary visual cortex neurons (n ≈ 637).</p>
       </a>
     </div>
   </div>
@@ -307,40 +343,6 @@
         <span class="badge badge-r2plus1d">R(2+1)D</span>
         <h3>R(2+1)D — Layer 4</h3>
         <p>Fourth (deepest) convolutional block (n ≈ 1 960).</p>
-      </a>
-    </div>
-  </div>
-
-  <h2>Foundation Neural Network of Mouse Visual Cortex (FNN, <a href="https://www.nature.com/articles/s41586-025-08829-y" target="_blank">
-        Wang et al., 2025
-      </a>)</h2>
-  <div class="grid">
-    <div class="card">
-      <a href="fnn07_act_i3_n2000_SCL0_7_TL37_inputs0_maxFr_maxNr_seed1.html">
-        <span class="badge badge-fnn">FNN</span>
-        <h3>FNN — Inputs Layer 0</h3>
-        <p>FNN intermediate activations, inputs.0 (n ≈ 2 000).</p>
-      </a>
-    </div>
-    <div class="card">
-      <a href="fnn07_act_i3_n2000_SCL0_7_TL37_blocks2_maxFr_maxNr_seed1.html">
-        <span class="badge badge-fnn">FNN</span>
-        <h3>FNN — Blocks Layer 2</h3>
-        <p>FNN intermediate activations, blocks.2 (n ≈ 2 000).</p>
-      </a>
-    </div>
-    <div class="card">
-      <a href="fnn07_act_i3_n2000_SCL0_7_TL37_hidden_maxFr_maxNr_seed1.html">
-        <span class="badge badge-fnn">FNN</span>
-        <h3>FNN — Hidden Layer</h3>
-        <p>FNN intermediate activations, hidden layer (n ≈ 2 000).</p>
-      </a>
-    </div>
-    <div class="card">
-      <a href="fnn07_seed2.html">
-        <span class="badge badge-fnn">FNN</span>
-        <h3>FNN Output</h3>
-        <p>FNN activations (n ≈ 1 000).</p>
       </a>
     </div>
   </div>
